@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="380dp">
+
+        <ImageView
+            android:id="@+id/my_Image"
+            android:layout_width="match_parent"
+            android:layout_height="380dp" />
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_profile_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#25000000"
+            android:elevation="2dp"
+            app:menu="@menu/my_profile"
+
+            >
+
+            <ImageButton
+                android:id="@+id/back_profile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/white"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/chat_back_button"
+
+                />
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom"
+            android:background="#4BD4D7DC"
+            android:fontFamily="@font/coiny"
+            android:gravity="center_horizontal"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+    </FrameLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graue" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="My Photos"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graue" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_Photos"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graue" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profil_details"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:clickable="true"
+            android:text="Profil Details"
+            android:textColor="@color/black"
+            android:focusable="true" />
+
+
+        <TextView
+            android:id="@+id/contact_Us"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:paddingStart="20dp"
+            android:text="Contact Us"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/signout"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/google"
+            android:text="signout"
+
+
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

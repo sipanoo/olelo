@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhotoUpload"
+    android:background="@color/white"
+   >
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/graue">
+
+        <ImageButton
+            android:id="@+id/back_to_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/chat_back_button"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+          android:layout_marginRight="50dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Upload Photo"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_button"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom|center"
+      android:layout_marginTop="500dp"
+
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChoose"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button"
+            android:text="Choose"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnUpload"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button"
+            android:text="Upload"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_find"
+        android:icon="@drawable/baseline_radar_black_24dp"
+        android:title="@string/nav_find" />
+    <item
+        android:id="@+id/nav_match"
+        android:icon="@drawable/baseline_portrait_black_24dp"
+        android:title="@string/nav_match" />
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/baseline_forum_black_24dp"
+        android:title="@string/nav_chat" />
+</menu>

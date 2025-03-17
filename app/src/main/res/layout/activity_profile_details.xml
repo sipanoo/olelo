@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="4"
+    >
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="52dp"
+        app:srcCompat="@drawable/back_arrow"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:fontFamily="@font/secular_one"
+        android:text="Describe who you are"
+        android:textColor="@color/pink"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+
+        <EditText
+            android:id="@+id/add_bio"
+            android:layout_width="350dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/input_feld"
+            android:hint="Add Bio"
+            android:inputType="text"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="#8A8686" />
+
+        <EditText
+            android:id="@+id/birthday"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/input_feld"
+            android:hint="Birthday"
+            android:inputType="text"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="#8A8686" />
+
+        <EditText
+            android:id="@+id/interested_in"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/input_feld"
+            android:hint="Interested In"
+            android:inputType="text"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="#8A8686" />
+
+        <EditText
+            android:id="@+id/education"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/input_feld"
+            android:hint="Education"
+            android:inputType="text"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="#8A8686" />
+        <EditText
+            android:id="@+id/relationship"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/input_feld"
+            android:hint="Relationship"
+            android:inputType="text"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="#8A8686" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="110dp"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/match_profile"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="@color/pink"
+       >
+
+    <ImageView
+
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="@drawable/plus_button"
+        android:backgroundTint="@color/white"
+
+        />
+  </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>
