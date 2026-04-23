@@ -43,7 +43,7 @@ A unique feature of Olelo is its integration with Google ML Kit, offering real-t
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/olelo.git
+   git clone https://github.com/sipanoo/olelo.git
    cd olelo
    ```
 
