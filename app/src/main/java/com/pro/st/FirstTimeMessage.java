@@ -13,7 +13,7 @@ public class FirstTimeMessage {
     private static final String TAG = "FirstTimeMessage";
     public static void sendFerstMessege(String sender, String recover, String messege) {
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://olelo-84b3f-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance(Constants.KEY_DATA).getReference();
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put(Constants.KEY_SANDER_ID, sender);
         hashMap.put(Constants.KEY_RECEIVER_ID, recover);

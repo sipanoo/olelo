@@ -37,16 +37,18 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     String userid;
 
-    {
-        assert firebaseUser != null;
-        userid = firebaseUser.getUid();
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messanger);
+
+        // Null safety: redirect to login if user is not authenticated
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+        userid = firebaseUser.getUid();
 
         getWindow().setBackgroundDrawableResource(R.drawable.chat_backgrund);
         Intent intent = getIntent();
@@ -158,7 +160,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e(TAG, "Failed to read messages: " + error.getMessage());
             }
         });
 

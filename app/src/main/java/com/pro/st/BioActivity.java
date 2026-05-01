@@ -66,12 +66,18 @@ public class BioActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection(Constants.KEY_COLLECTION_USERS).document(bioId).collection(Constants.KEY_COLLECTION_ID).document("myYEzPOfGKRAJiKWTiR0").addSnapshotListener((value, error) -> {
-
+            if (error != null) {
+                Log.e(TAG, "Error loading bio details", error);
+                return;
+            }
+            if (value == null || !value.exists()) {
+                Log.w(TAG, "Bio details document does not exist");
+                return;
+            }
             bioDetail.setText(value.getString("Bio"));
-            interested.setText("Interested In \n" +value.getString("interestedIn"));
+            interested.setText("Interested In \n" + value.getString("interestedIn"));
             education.setText(" Education \n" + value.getString("education"));
-            relationship.setText("Relationship \n" + value.getString("relationship") );
-
+            relationship.setText("Relationship \n" + value.getString("relationship"));
         });
 
         findViewById(R.id.back_bio).setOnClickListener(new View.OnClickListener() {
@@ -83,7 +89,7 @@ public class BioActivity extends AppCompatActivity {
         });
 
 
-        if (bioImage.equals("default")) {
+        if (bioImage == null || bioImage.equals("default")) {
 
             image.setImageResource(R.drawable.users_default_image);
 

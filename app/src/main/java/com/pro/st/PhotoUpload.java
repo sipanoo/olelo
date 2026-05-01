@@ -33,7 +33,7 @@ public class PhotoUpload extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    String userid = firebaseUser.getUid();
+    String userid;
     String photoName;
     String url;
 
@@ -42,6 +42,14 @@ public class PhotoUpload extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_upload);
+
+        // Null safety: redirect to login if user is not authenticated
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+        userid = firebaseUser.getUid();
 
         btnSelect = findViewById(R.id.btnChoose);
         btnUpload = findViewById(R.id.btnUpload);

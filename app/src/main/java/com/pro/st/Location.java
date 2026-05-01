@@ -34,19 +34,22 @@ public class Location extends AppCompatActivity {
     private static final String TAG = Location.class.getSimpleName();
     private android.location.Location lastLocation;
     FusedLocationProviderClient fusedLocationClient;
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     String userid;
-
-    {
-        assert firebaseUser != null;
-        userid = firebaseUser.getUid();
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location);
+
+        // Null safety: redirect to login if user is not authenticated
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+        userid = firebaseUser.getUid();
 
         isGooglePlayServicesAvailable(this);
 

@@ -36,8 +36,8 @@ public class ChatsFragment extends Fragment {
     private RecyclerView recyclerView;
     private ChatsAdapter chatsAdapter;
     private List<ChatItem> chat_items;
-    private final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    private final String userid=firebaseUser.getUid();
+    private FirebaseUser firebaseUser;
+    private String userid;
     private View view;
 
 
@@ -48,13 +48,21 @@ public class ChatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
+        this.view = view;
+
+        // Null safety for authentication
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            return view;
+        }
+        userid = firebaseUser.getUid();
+
         recyclerView = view.findViewById(R.id.recylerViewChat);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         chat_items = new ArrayList<>();
 
         getAllChats();
-        this.view = view;
         return view;
 
 
@@ -68,15 +76,15 @@ public class ChatsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    getAll(dataSnapshot.getKey() , dataSnapshot.child(Constants.KEY_LAST_MESSAGE).getValue().toString());
-
+                    Object lastMsg = dataSnapshot.child(Constants.KEY_LAST_MESSAGE).getValue();
+                    String lastMessage = lastMsg != null ? lastMsg.toString() : "";
+                    getAll(dataSnapshot.getKey(), lastMessage);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e(TAG, "Failed to load chats: " + error.getMessage());
             }
         });
 

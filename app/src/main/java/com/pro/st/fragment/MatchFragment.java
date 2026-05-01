@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -46,12 +47,17 @@ public class MatchFragment extends Fragment {
         this.view = view;
         flingContainer = view.findViewById(R.id.frame);
 
+        // Get current user for filtering
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            id = currentUser.getUid();
+        }
+
         users = new ArrayList<>();
 
         getAllUsers();
 
         return view;
-
     }
 
 
@@ -64,7 +70,7 @@ public class MatchFragment extends Fragment {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
-                        if (!document.getId().equals(Constants.KEY_Dating_Assistant)){
+                        if (!document.getId().equals(Constants.KEY_Dating_Assistant) && !document.getId().equals(id)){
                             User user = new User(document.getId(), document.getString(Constants.KEY_USER_NAME), document.getString(Constants.KEY_CITY), document.getString(Constants.KEY_IMAGE_URL));
                             users.add(user);
 

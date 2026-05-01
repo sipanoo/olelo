@@ -39,13 +39,7 @@ public class Assistant extends AppCompatActivity {
     private String imageURL;
     private ImageButton sendButton;
     private EditText textMessege;
-    private final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    private final String userid;
-
-    {
-        assert firebaseUser != null;
-        userid = firebaseUser.getUid();
-    }
+    private String userid;
 
     private HashMap<Integer, String> Questions;
     private DatabaseReference reference;
@@ -58,6 +52,16 @@ public class Assistant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asstent);
         getWindow().setBackgroundDrawableResource(R.drawable.chat_backgrund);
+
+        // Null safety: redirect to login if user is not authenticated
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+        userid = firebaseUser.getUid();
+
         reference = FirebaseDatabase.getInstance(Constants.KEY_DATA).getReference(Constants.KEY_Dating_Assistant);
         Intent intent = getIntent();
         String name = intent.getStringExtra("bioName");
@@ -204,19 +208,16 @@ public class Assistant extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChild(userid)) {
                     for (DataSnapshot data : snapshot.child(userid).getChildren()) {
-                        int d = Integer.valueOf(data.getKey());
-
+                        int d = Integer.parseInt(data.getKey());
                         Questions.remove(d);
                         i = d + 1;
-
-
                     }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("Assistant", "Failed to check questions: " + error.getMessage());
             }
         });
 
@@ -239,7 +240,7 @@ public class Assistant extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("Assistant", "Failed to load questions: " + error.getMessage());
             }
         });
 
@@ -268,7 +269,7 @@ public class Assistant extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("Assistant", "Failed to get answers: " + error.getMessage());
             }
         });
 

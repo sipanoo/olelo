@@ -75,7 +75,7 @@ public class SignupActivity extends AppCompatActivity {
                 HashMap<String,Object> hashMap = new HashMap<>();
                 hashMap.put("id", userid);
                 hashMap.put("email", email);
-                hashMap.put("password", password);
+                // Password is securely managed by Firebase Auth - never store it in Firestore
                 hashMap.put("username", name);
                 hashMap.put("gender", gender);
                 hashMap.put("imageURL","default");

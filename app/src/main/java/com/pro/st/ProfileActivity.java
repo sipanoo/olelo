@@ -45,7 +45,6 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference listRef;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     String userid;
 
 
@@ -54,6 +53,13 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        // Null safety: redirect to login if user is not authenticated
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
         userid = firebaseUser.getUid();
         recyclerView = findViewById(R.id.my_Photos);
         recyclerView.setHasFixedSize(true);

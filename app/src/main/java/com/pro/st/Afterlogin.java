@@ -27,7 +27,6 @@ public class Afterlogin extends AppCompatActivity {
     private FindFragment findFragment;
     private MatchFragment matchFragment;
 
-    FirebaseUser firebaseUser =FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db;
     String userid;
 
@@ -37,6 +36,16 @@ public class Afterlogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afterlogin);
+
+        // Null safety: redirect to login if user is not authenticated
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+        userid = firebaseUser.getUid();
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setExitTransition(null);
         chatsFragment = new ChatsFragment();
@@ -48,7 +57,7 @@ public class Afterlogin extends AppCompatActivity {
         setFragment(matchFragment);
         textView.setText(R.string.text_Matching);
         Intent intent = getIntent();
-        userid = firebaseUser.getUid();
+
         if (  intent.getBooleanExtra("backFromChat" , false)){ // default fragment
 
             setFragment(chatsFragment);

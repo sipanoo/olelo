@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.pro.st.Adapter.FindAdapter;
@@ -29,6 +31,7 @@ public class FindFragment extends Fragment {
     private List<User> users;
     public FirebaseFirestore db;
     private View view;
+    private String currentUserId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +45,13 @@ public class FindFragment extends Fragment {
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         users = new ArrayList<>();
+
+        // Get current user for filtering
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            currentUserId = currentUser.getUid();
+        }
+
         getAllUsers();
 
         return view;
@@ -57,7 +67,7 @@ public class FindFragment extends Fragment {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
-                            if (!document.getId().equals(Constants.KEY_Dating_Assistant)) {
+                            if (!document.getId().equals(Constants.KEY_Dating_Assistant) && !document.getId().equals(currentUserId)) {
                                 User user = new User(document.getId(), document.getString(Constants.KEY_USER_NAME), document.getString(Constants.KEY_CITY), document.getString(Constants.KEY_IMAGE_URL));
                                 users.add(user);
                             }
